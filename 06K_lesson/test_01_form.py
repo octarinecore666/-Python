@@ -9,11 +9,12 @@ from selenium.webdriver.support import expected_conditions as EC
 @pytest.fixture
 def driver():
     # Инициализация драйвера Edge
-    service = Service()  # Убедитесь, что msedgedriver.exe доступен в PATH или укажите путь
+    service = Service()
     driver = webdriver.Edge(service=service)
     yield driver
     # Закрытие браузера после теста
     driver.quit()
+
 
 def test_form_validation(driver):
     # Открытие страницы
@@ -63,23 +64,32 @@ def test_form_validation(driver):
     company_field.send_keys("SkyPro")
 
     # Нажатие кнопки Submit
-    submit_button = driver.find_element(By.XPATH, "//button[@type='submit' and contains(@class, 'btn')]")
+    submit_button = driver.find_element(
+        By.XPATH, "//button[@type='submit' and contains(@class, 'btn')]"
+    )
     submit_button.click()
 
     # Проверка, что поле Zip code подсвечено красным
-    zip_code_alert = wait.until(
-        EC.visibility_of_element_located((By.ID, "zip-code"))
-    )
-    assert "alert-danger" in zip_code_alert.get_attribute("class"), "Поле Zip code должно быть подсвечено красным"
+    zip_code_alert = wait.until(EC.visibility_of_element_located((By.ID, "zip-code")))
+    assert "alert-danger" in zip_code_alert.get_attribute(
+        "class"
+    ), "Поле Zip code должно быть подсвечено красным"
 
     # Проверка, что остальные поля подсвечены зелёным
     success_fields = [
-        "first-name", "last-name", "address", "e-mail",
-        "phone", "city", "country", "job-position", "company"
+        "first-name",
+        "last-name",
+        "address",
+        "e-mail",
+        "phone",
+        "city",
+        "country",
+        "job-position",
+        "company",
     ]
 
     for field_id in success_fields:
-        field_alert = wait.until(
-            EC.visibility_of_element_located((By.ID, field_id))
-        )
-        assert "alert-success" in field_alert.get_attribute("class"), f"Поле {field_id} должно быть подсвечено зелёным"
+        field_alert = wait.until(EC.visibility_of_element_located((By.ID, field_id)))
+        assert "alert-success" in field_alert.get_attribute(
+            "class"
+        ), f"Поле {field_id} должно быть подсвечено зелёным"

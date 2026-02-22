@@ -1,18 +1,15 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from selenium.webdriver.common.by import Bycd 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
 @pytest.fixture
 def driver():
     """Инициализация драйвера Chrome"""
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service)
+    driver = webdriver.Chrome()  # Selenium автоматически загрузит драйвер
     yield driver
-    driver.quit()  # Закрытие браузера после теста
+    driver.quit()
 
 def test_calculator(driver):
     """Тест калькулятора с задержкой"""
@@ -28,25 +25,36 @@ def test_calculator(driver):
     # 3. Нажатие на кнопки калькулятора
     # Кнопка "7"
     seven_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//span[@class='btn btn-outline-primary' and text()='7']"))
+        EC.element_to_be_clickable(
+            (By.XPATH, "//span[@class='btn btn-outline-primary' and text()='7']")
+        )
     )
     seven_button.click()
 
     # Кнопка "+"
     plus_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//span[@class='operator btn btn-outline-success' and text()='+']"))
+        EC.element_to_be_clickable(
+            (
+                By.XPATH,
+                "//span[@class='operator btn btn-outline-success' and text()='+']",
+            )
+        )
     )
     plus_button.click()
 
     # Кнопка "8"
     eight_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//span[@class='btn btn-outline-primary' and text()='8']"))
+        EC.element_to_be_clickable(
+            (By.XPATH, "//span[@class='btn btn-outline-primary' and text()='8']")
+        )
     )
     eight_button.click()
 
     # Кнопка "="
     equals_button = WebDriverWait(driver, 10).until(
-        EC.element_to_be_clickable((By.XPATH, "//span[@class='btn btn-outline-warning' and text()='=']"))
+        EC.element_to_be_clickable(
+            (By.XPATH, "//span[@class='btn btn-outline-warning' and text()='=']")
+        )
     )
     equals_button.click()
 
@@ -57,6 +65,8 @@ def test_calculator(driver):
 
     # Assert для проверки результата
     screen_element = driver.find_element(By.CLASS_NAME, "screen")
-    assert screen_element.text == "15", f"Ожидался результат '15', но получен '{screen_element.text}'"
+    assert (
+        screen_element.text == "15"
+    ), f"Ожидался результат '15', но получен '{screen_element.text}'"
 
     print("Тест пройден: результат расчёта верен!")

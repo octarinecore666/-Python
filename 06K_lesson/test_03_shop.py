@@ -3,22 +3,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.firefox.service import Service
-from webdriver_manager.firefox import GeckoDriverManager
-
 
 @pytest.fixture
 def driver():
-    """Инициализация драйвера Firefox"""
-    service = Service(GeckoDriverManager().install())
-    driver = webdriver.Firefox(service=service)
+    driver = webdriver.Firefox()  # Selenium сам загрузит GeckoDriver
     yield driver
-    driver.quit()  # Закрытие браузера после теста
-
+    driver.quit()
+    # 1. Зайти на сайт
 def test_shop_purchase(driver):
-    """Тест покупки товаров в интернет‑магазине"""
-
-    # 1. Открытие сайта магазина
     driver.get("https://www.saucedemo.com/")
 
     # 2. Авторизация
@@ -100,6 +92,8 @@ def test_shop_purchase(driver):
 
     # 9. Проверка итоговой суммы
     expected_total = 58.29
-    assert abs(total_amount - expected_total) < 0.01, f"Ожидалась сумма ${expected_total}, но получена ${total_amount}"
+    assert (
+        abs(total_amount - expected_total) < 0.01
+    ), f"Ожидалась сумма ${expected_total}, но получена ${total_amount}"
 
     print(f"Тест пройден: итоговая сумма корректна — ${total_amount}")
