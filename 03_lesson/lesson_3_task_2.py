@@ -10,4 +10,3 @@ catalog.append(Smartphone("OnePlus", "11", "+79554321098"))
 
 for smartphone in catalog:
     print(smartphone)
-    

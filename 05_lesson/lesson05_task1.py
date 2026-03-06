@@ -12,17 +12,12 @@ try:
     driver.get("http://uitestingplayground.com/classattr")
     time.sleep(2)  # Ожидание загрузки
 
-
     # Найти кнопку
-    button = driver.find_element(
-        By.CSS_SELECTOR,
-        "button.btn.btn-primary.btn-test"
-    )
+    button = driver.find_element(By.CSS_SELECTOR, "button.btn.btn-primary.btn-test")
 
     # Проверить border-color
     border_color = button.value_of_css_property("border-color")
     expected_color = "rgb(0, 123, 255)"  # #007bff в RGB
-
 
     if border_color.lower() != expected_color.lower():
         print(f"Ошибка: цвет границы кнопки не соответствует ожидаемому.")

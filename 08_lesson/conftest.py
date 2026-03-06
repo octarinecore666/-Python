@@ -1,5 +1,5 @@
 import os
-import pytest  
+import pytest
 from dotenv import load_dotenv
 import requests
 
@@ -8,6 +8,7 @@ load_dotenv()
 
 
 BASE_URL = "https://ru.yougile.com/api-v2"
+
 
 @pytest.fixture(scope="session")
 def auth_token():
@@ -19,12 +20,11 @@ def auth_token():
         )
     return token
 
+
 @pytest.fixture
 def headers(auth_token):
-    return {
-        "Authorization": f"Bearer {auth_token}",
-        "Content-Type": "application/json"
-    }
+    return {"Authorization": f"Bearer {auth_token}", "Content-Type": "application/json"}
+
 
 @pytest.fixture
 def project_cleanup(headers):
@@ -41,9 +41,11 @@ def project_cleanup(headers):
         url = f"{BASE_URL}/projects/{project_id}"
         requests.put(url, json={"deleted": True}, headers=headers)
 
+
 @pytest.fixture
 def create_test_project(headers, project_cleanup):
     """Фикстура для создания тестового проекта"""
+
     def _create_project(title="Test Project"):
         url = f"{BASE_URL}/projects"
         data = {"title": title, "users": {}}

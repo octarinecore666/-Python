@@ -1,12 +1,12 @@
-#user_login = "Opera"
-#user_pass = "ghbdtn"
+# user_login = "Opera"
+# user_pass = "ghbdtn"
 
-#login = input("Введите ваш логин: ")
-#password = input("Введите ваш пароль: ")
+# login = input("Введите ваш логин: ")
+# password = input("Введите ваш пароль: ")
 
-#if (login == user_login) and (password == user_pass):
+# if (login == user_login) and (password == user_pass):
 #    print("Добро пожаловать!")
-#else:
+# else:
 #    print("Доступ закрыт")
 
 
@@ -19,4 +19,4 @@ feature = input("Feature")
 if (colour == crit1) or (feature == crit):
     print("Покупай это!")
 else:
-    print("Нет подходящих вариантов :(") 
+    print("Нет подходящих вариантов :(")
