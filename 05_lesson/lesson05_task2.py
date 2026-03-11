@@ -13,10 +13,7 @@ try:
     time.sleep(2)  # Базовое ожидание загрузки
 
     # Найти кнопку по классам (стабильные атрибуты)
-    button = driver.find_element(
-        By.CSS_SELECTOR,
-        "button.btn.btn-primary"
-    )
+    button = driver.find_element(By.CSS_SELECTOR, "button.btn.btn-primary")
 
     # Кликнуть по кнопке
     button.click()

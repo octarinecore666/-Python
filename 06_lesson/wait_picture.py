@@ -16,9 +16,8 @@ try:
         EC.visibility_of_element_located((By.ID, "image-container"))
     )
 
-    # 3. Список ID всех изображений в контейнере 
+    # 3. Список ID всех изображений в контейнере
     image_ids = ["compass", "calendar", "award", "landscape"]
-
 
     # 4. Ждём, пока КАЖДОЕ изображение станет видимым
     images = []

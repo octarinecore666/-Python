@@ -4,12 +4,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 @pytest.fixture
 def driver():
     driver = webdriver.Firefox()  # Selenium сам загрузит GeckoDriver
     yield driver
     driver.quit()
     # 1. Зайти на сайт
+
+
 def test_shop_purchase(driver):
     driver.get("https://www.saucedemo.com/")
 

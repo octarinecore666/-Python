@@ -7,12 +7,13 @@ def square(side):
         area = int(area)
     return area
 
+
 side_input = input("Введите длину стороны квадрата: ")
 
 # Проверяем, что ввод — число (содержит только цифры, точку и, возможно, минус)
-if side_input.replace('.', '', 1).lstrip('-').isdigit() and side_input.count('.') <= 1:
+if side_input.replace(".", "", 1).lstrip("-").isdigit() and side_input.count(".") <= 1:
     side = float(side_input)
-    
+
     if side <= 0:
         print("Ошибка: сторона должна быть положительным числом.")
     else:

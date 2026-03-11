@@ -8,7 +8,9 @@ def fizz_buzz(n):
             print("Buzz")
         else:
             print(i)
-n_input = input("Введите число n: ")            
+
+
+n_input = input("Введите число n: ")
 if n_input.isdigit() and len(n_input) > 0:
     n = int(n_input)
     if n > 0:

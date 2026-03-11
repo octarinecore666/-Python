@@ -1,8 +1,9 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.common.by import By 
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
 
 @pytest.fixture
 def driver():
@@ -10,6 +11,7 @@ def driver():
     driver = webdriver.Chrome()  # Selenium автоматически загрузит драйвер
     yield driver
     driver.quit()
+
 
 def test_calculator(driver):
     """Тест калькулятора с задержкой"""
